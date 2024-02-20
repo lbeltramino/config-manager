@@ -1,5 +1,7 @@
 # Config Manager
 
+[![asciicast](https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr.png)](https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr)
+
 Click here to view the script in action: https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr
 
 ## Prerequisites
