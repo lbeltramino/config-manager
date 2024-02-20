@@ -37,24 +37,38 @@ class ConfigManager:
             return self.run_command(f'sudo yum remove -y {name}')
 
     def manage_file(self, path, action, local_path=None):
-        sftp = self.client.open_sftp()
         if action == 'create' or action == 'upload':
-            sftp.put(local_path, path)
+            sftp = self.client.open_sftp()
+            try:
+                sftp.stat(path)
+                sftp.close()
+                return f'OK: File "{path}" already exists'
+            except IOError:
+                sftp.put(local_path, path)
+                sftp.close()
+                return f'Changed: File "{path}" created'
         elif action == 'delete':
-            sftp.remove(path)
-        sftp.close()
+            output = self.run_command(f'test -f {path} && echo "File exists"', sudo=False)
+            if 'File exists' in output:
+                return self.run_command(f'rm {path}', sudo=False)
+            else:
+                return f'OK: File "{path}" does not exist'
 
     def manage_service(self, name, action):
-        return self.run_command(f'sudo systemctl {action} {name}')
+        return self.run_command(f'sudo systemctl {action} {name} && echo "OK"')
 
     def update(self):
         return self.run_command('sudo yum update -y')
 
     def manage_directory(self, path, action):
         if action == 'create':
-            return self.run_command(f'mkdir -p {path}')
+            return self.run_command(f'mkdir -p {path} && echo "OK"')
         elif action == 'delete':
-            return self.run_command(f'rm -r {path}')
+            output = self.run_command(f'rm -r {path}')
+            if 'No such file or directory' in output:
+                return 'Directory does not exist'
+            else:
+                return 'Directory deleted'
 
     def load_playbook(self, playbook_path):
         with open(playbook_path, 'r') as file:
@@ -87,4 +101,3 @@ if __name__ == "__main__":
 
     config_manager = ConfigManager(args.host, args.username, args.keyfile)
     config_manager.load_playbook(args.playbook)
-
