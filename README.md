@@ -25,7 +25,7 @@ Replace 'hostname', 'username', '/path/to/keyfile', and '/path/to/playbook.yml' 
 
 The playbook should be in YAML format and look something like this (a sample_playbook.yml file is provided):
 
-```
+```yaml
   tasks:
     - name: Install package
         action:
@@ -51,4 +51,5 @@ tasks:
       command: whoami && touch /tmp/testwho.txt
       check_command: test -f /tmp/testwho.txt && echo "File exists"
       check_expected_output: "File exists"
+      sudo: true
 ```
