@@ -38,4 +38,17 @@ The playbook should be in YAML format and look something like this (a sample_pla
         command: echo "Hello, World!"
 ```
 
-Note: for idempotency to work in the command module you will have to set up a flag like it is shown in the sample tasks.
+Notes: 
+
+- for idempotency to work in the command module you will have to set up a flag like it is shown in the sample tasks.
+- the command module allows the use of sudo:
+
+```yaml
+tasks:
+  - name: Run whoami
+    action:
+      module: command
+      command: whoami && touch /tmp/testwho.txt
+      check_command: test -f /tmp/testwho.txt && echo "File exists"
+      check_expected_output: "File exists"
+```
