@@ -1,0 +1,48 @@
+tasks:
+  - name: Install package
+    action:
+      module: package
+      name: vim
+      state: install
+  - name: Install package httpd
+    action:
+      module: package
+      name: httpd
+      state: install
+  - name: Run command with idempotency
+    action:
+      module: command
+      command: echo "Hello, World!"
+      check_command: test -f /tmp/test.txt && echo "File exists"
+      check_expected_output: "File exists"
+  - name: Run command - fail idempotency to run always
+    action:
+      module: command
+      command: echo "Hello, World - Run Always!"
+      check_command: test -f /tmp/test.txt && echo "File exists"
+      check_expected_output: "File exists - fail"
+  - name: Run command with error
+    action:
+      module: command
+      command: echo "New Command 5!" && touch /tmp/newcmd5
+      check_command: test -f /tmp/newcmd4 && echo "File 5 exists"
+      check_expected_output: "File 5 exists"
+  - name: Create file
+    action:
+      module: file
+      path: /tmp/test.txt
+      state: create
+      local_path: test.txt
+  - name: Start service
+    action:
+      module: service
+      name: httpd
+      state: start
+  - name: Update system
+    action:
+      module: update
+  - name: Create directory
+    action:
+      module: directory
+      path: /tmp/temp2dir
+      state: create
