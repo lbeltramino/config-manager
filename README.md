@@ -1,5 +1,7 @@
 # Config Manager
 
+Click here to view the script in action: https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr
+
 ## Prerequisites
 
 You need Python 3 and pip installed on your machine. The script also requires the `paramiko` and `pyyaml` Python packages.
@@ -18,7 +20,7 @@ pip install paramiko pyyaml argparse
 You can run the script with command-line arguments like this:
 
 ```bash
-python script.py --host hostname --username username --keyfile /path/to/keyfile --playbook /path/to/playbook.yml
+python cm.py --host hostname --username username --keyfile /path/to/keyfile --playbook /path/to/playbook.yml
 ```
 
 Replace 'hostname', 'username', '/path/to/keyfile', and '/path/to/playbook.yml' with your actual values.

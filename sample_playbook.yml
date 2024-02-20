@@ -24,7 +24,7 @@ tasks:
   - name: Run command with error
     action:
       module: command
-      command: echo "New Command 5!" && touch /tmp/newcmd5
+      command: echoo "New Command 5!" && touch /tmp/newcmd5
       check_command: test -f /tmp/newcmd4 && echo "File 5 exists"
       check_expected_output: "File 5 exists"
   - name: Create file
