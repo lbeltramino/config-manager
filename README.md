@@ -1,5 +1,7 @@
 # Config Manager
 
+Click here to view the script in action: https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr
+
 ## Prerequisites
 
 You need Python 3 and pip installed on your machine. The script also requires the `paramiko` and `pyyaml` Python packages.
