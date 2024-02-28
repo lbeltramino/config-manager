@@ -1,6 +1,6 @@
 # Config Manager
 
-[![asciicast](https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr.png)](https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr)
+[![asciicast](https://asciinema.org/a/0lo5rluSyW4OHjNNm7lksI3qe.png)](https://asciinema.org/a/0lo5rluSyW4OHjNNm7lksI3qe)
 
 Click here to view the script in action: https://asciinema.org/a/c5SXBdevJvcAaJOuWseQ5I8rr
 
